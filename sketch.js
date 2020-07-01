@@ -3,36 +3,36 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 const Body = Matter.Body;
-const Render = Matter.Render;
-var dustbinObj,groundObject	
+//const Render = Matter.Render;
+var groundObject	
 var world;
 function setup() {
-	createCanvas(1600, 700);
+	createCanvas(1600,700);
 	rectMode(CENTER);
 	engine = Engine.create();
 	world = engine.world;
-	dustbinObj=new dustbin(1200,650);
-	paperObject=new bob(200,450,40);
-	groundObject=new ground(width/2,670,width,20);
-	slingshot = new SlingShot(paperObject.body,{x:200, y:300});
-	var render = Render.create({
-	  element: document.body,
-	  engine: engine,
-	  options: {
-	    width: 1200,
-	    height: 700,
-	    wireframes: false
-	  }
-	});
+	bob1=new bob(200,450,40);
+	bob2=new bob(250,450,40);
+	bob3=new bob(300,450,40);
+	bob4=new bob(350,450,40);
+	groundObject=new ground(width/2,100,400,20);
+	sling1 = new SlingShot(bob1.body,groundObject.body);
+	sling2 = new SlingShot(bob2.body,groundObject.body);
+	sling3 = new SlingShot(bob3.body,groundObject.body);
+	sling4 = new SlingShot(bob4.body,groundObject.body);
 	Engine.run(engine);
-	//Render.run(render);
 }
 function draw() {
   rectMode(CENTER);
   background(225);
-  dustbinObj.display();
-  paperObject.display();
+  bob1.display();
+  bob2.display();
+  bob3.display();
+  bob4.display();
   groundObject.display();
-  slingshot.display();
+  sling1.display();
+  sling2.display();
+  sling3.display();
+  sling4.display();
   drawSprites();
 }
